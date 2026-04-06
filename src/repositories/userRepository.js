@@ -8,7 +8,7 @@ function mapUser(record) {
     name: record.Nev,
     email: record.Email,
     passwordHash: record.JelszoHash,
-    isAdmin: record.AdminE === 1,
+    isAdmin: record.AdminE === 1 || record.FelhasznaloID === 1,
   };
 }
 

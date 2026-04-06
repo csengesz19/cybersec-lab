@@ -37,15 +37,13 @@ router.post('/login', async (req, res, next) => {
       });
     }
 
-    const sessionUser = {
+    const session = req.session;
+    session.user = {
       id: user.userId,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
     };
-
-    const session = req.session;
-    session.user = sessionUser;
 
     return res.redirect(nextUrl || '/');
   } catch (err) {
@@ -98,15 +96,13 @@ router.post('/register', async (req, res, next) => {
 
     const user = await createUser({ name, email, passwordHash });
 
-    const sessionUser = {
+    const session = req.session;
+    session.user = {
       id: user.userId,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
     };
-
-    const session = req.session;
-    session.user = sessionUser;
 
     return res.redirect(nextUrl || '/');
   } catch (err) {

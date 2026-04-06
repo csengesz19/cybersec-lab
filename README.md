@@ -84,6 +84,7 @@ Users can:
 
 Admin users can:
 - open the complaints page
+- see complaints related to the available routes
 - see a summary grouped by route
 - see the full complaints list
 - filter complaints on the client side
@@ -189,20 +190,9 @@ http://localhost:3000
 
 ## Admin Note
 
-In the current version of the project, the first created user is treated as the admin.
+In the current version of the project, admin users can create train routes and access the complaints page.
 
-That means the user with:
-
-```text
-FelhasznaloID = 1
-```
-
-receives admin privileges.
-
-Admin-only features include:
-- creating train routes
-- opening the complaints page
-- viewing complaint summaries and complaint details
+On the complaints page, admin users can review complaints submitted by users for bookings associated with the available routes.
 
 ---
 
