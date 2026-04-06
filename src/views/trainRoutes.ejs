@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= title %> - CyberSec Lab</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  </head>
+
+  <body>
+    <%- include('partials/siteHeader') %>
+
+    <main class="container">
+      <section class="card">
+        <h1 class="main-heading">DataTrains — Train Routes</h1>
+        <p>Here you can see all virtual train routes.</p>
+      </section>
+
+      <% if (errorMessage) { %>
+        <div class="card error"><p><%= errorMessage %></p></div>
+      <% } %>
+
+      <% if (successMessage) { %>
+        <div class="card success"><p><%= successMessage %></p></div>
+      <% } %>
+
+      <section class="card">
+        <h2 class="universal">Search train routes</h2>
+        <form class="data-form" method="GET" action="/train-routes">
+          <div class="form-row">
+            <label for="searchSource">Source server:</label>
+            <input
+              id="searchSource"
+              name="sourceServer"
+              type="text"
+              value="<%= search.sourceServer %>"
+              placeholder="proxy-node-01"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="searchDestination">Destination server:</label>
+            <input
+              id="searchDestination"
+              name="destinationServer"
+              type="text"
+              value="<%= search.destinationServer %>"
+              placeholder="core-db-01"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="minCost">Min cost:</label>
+            <input id="minCost" name="minCost" type="number" min="0" step="1" value="<%= search.minCost %>" />
+          </div>
+
+          <div class="form-row">
+            <label for="maxCost">Max cost:</label>
+            <input id="maxCost" name="maxCost" type="number" min="0" step="1" value="<%= search.maxCost %>" />
+          </div>
+
+          <button type="submit" class="primary game-btn">Search</button>
+        </form>
+      </section>
+
+      <% if (currentUser && currentUser.isAdmin) { %>
+        <section class="card">
+          <h2 class="universal">New Train Route (Admin)</h2>
+          <form class="data-form" method="POST" action="/train-routes">
+            <div class="form-row">
+              <label for="sourceServer">Source server:</label>
+              <input id="sourceServer" name="sourceServer" type="text" required placeholder="proxy-node-01" />
+            </div>
+
+            <div class="form-row">
+              <label for="destinationServer">Destination server:</label>
+              <input id="destinationServer" name="destinationServer" type="text" required placeholder="core-db-01" />
+            </div>
+
+            <div class="form-row">
+              <label for="dayOfWeek">Day:</label>
+              <select id="dayOfWeek" name="dayOfWeek" required>
+                <option value="">-- Select day --</option>
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="departureTime">Time:</label>
+              <input id="departureTime" name="departureTime" type="time" required />
+            </div>
+
+            <div class="form-row">
+              <label for="cost">Ticket price (credits):</label>
+              <input id="cost" name="cost" type="number" min="1" step="1" required />
+            </div>
+
+            <div class="form-row">
+              <label for="trainType">Train type:</label>
+              <select id="trainType" name="trainType" required>
+                <option value="">-- Select train type --</option>
+                <option value="TCP Express">TCP Express</option>
+                <option value="UDP Rapid">UDP Rapid</option>
+                <option value="FTP Steam Locomotive">FTP Steam Locomotive</option>
+                <option value="SSH Secure Line">SSH Secure Line</option>
+                <option value="ICMP Ping Shuttle">ICMP Ping Shuttle</option>
+                <option value="DNS Resolver Rail">DNS Resolver Rail</option>
+              </select>
+            </div>
+
+            <button type="submit" class="primary game-btn">Create train route</button>
+          </form>
+        </section>
+      <% } %>
+
+      <section class="card">
+        <h2 class="universal">Train routes list</h2>
+
+        <% if (trainRoutes.length === 0) { %>
+          <p>No train routes match the criteria.</p>
+        <% } else { %>
+          <table class="data-table" id="trainRoutesTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Bookings</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% trainRoutes.forEach((trainRoute) => { %>
+                <tr class="train-route-row" data-train-route-id="<%= trainRoute.trainRouteId %>">
+                  <td><%= trainRoute.trainRouteId %></td>
+                  <td><%= trainRoute.sourceServer %></td>
+                  <td><%= trainRoute.destinationServer %></td>
+                  <td><%= trainRoute.dayOfWeek %></td>
+                  <td><%= trainRoute.departureTime %></td>
+                  <td>
+                    <a href="/train-routes/<%= trainRoute.trainRouteId %>/bookings">View bookings</a>
+                  </td>
+                </tr>
+
+                <tr class="train-route-details" id="train-route-details-<%= trainRoute.trainRouteId %>" style="display:none;">
+                  <td colspan="6"></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+
+          <script src="/trainRoutes.js"></script>
+        <% } %>
+      </section>
+    </main>
+
+    <footer>
+      <p>Created by <strong> Szabó Csenge </strong> - &copy; CyberSec Lab</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title><%= title %> - CyberSec Lab</title>
+    <link rel="stylesheet" href="/style.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  </head>
+  <body>
+    <%- include('partials/siteHeader') %>
+
+    <main class="container">
+      <section class="card">
+        <h1 class="main-heading">Complaints</h1>
+      </section>
+
+      <section class="card">
+        <h2 class="universal">Summary by route</h2>
+
+        <% if (!summaryRows || summaryRows.length === 0) { %>
+          <p>There are no complaints.</p>
+        <% } else { %>
+          <table class="data-table" id="summaryTable">
+            <thead>
+              <tr>
+                <th>Route ID</th>
+                <th>Route</th>
+                <th>Schedule</th>
+                <th>Complaint count</th>
+                <th>Last complaint</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% summaryRows.forEach((row) => { %>
+                <tr
+                  class="summary-row"
+                  data-route-id="<%= row.routeId %>"
+                  data-search="<%= String(row.sourceServer ?? '').toLowerCase() %> <%= String(row.destinationServer ?? '').toLowerCase() %> <%= String(row.dayOfWeek ?? '').toLowerCase() %> <%= String(row.departureTime ?? '').toLowerCase() %>"
+                >
+                  <td><%= row.routeId %></td>
+                  <td><%= row.sourceServer %> → <%= row.destinationServer %></td>
+                  <td><%= row.dayOfWeek %> @ <%= row.departureTime %></td>
+                  <td><%= row.complaintCount %></td>
+                  <td><%= row.lastComplaintAt %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } %>
+      </section>
+
+      <div class="card">
+        <div class="form-row" style="margin-top: 12px;">
+          <label for="filterInput">Filter:</label>
+          <input
+            id="filterInput"
+            type="text"
+            style="width:100%; box-sizing:border-box;"
+            placeholder="Route ID, source, destination, user..."
+          >
+        </div>
+      </div>
+
+      <section class="card">
+        <h2 class="universal">All complaints</h2>
+
+        <% if (!complaints || complaints.length === 0) { %>
+          <p>There are no complaints.</p>
+        <% } else { %>
+          <table class="data-table" id="detailsTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Route ID</th>
+                <th>Route</th>
+                <th>Reported by</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% complaints.forEach((complaint) => { %>
+                <tr
+                  class="detail-row"
+                  data-route-id="<%= complaint.routeId %>"
+                  data-search="<%= String(complaint.sourceServer ?? '').toLowerCase() %> <%= String(complaint.destinationServer ?? '').toLowerCase() %> <%= String(complaint.userName ?? '').toLowerCase() %> <%= String(complaint.userEmail ?? '').toLowerCase() %>"
+                >
+                  <td><%= complaint.createdAt %></td>
+                  <td><%= complaint.routeId %></td>
+                  <td><%= complaint.sourceServer %> → <%= complaint.destinationServer %> (<%= complaint.dayOfWeek %> @ <%= complaint.departureTime %>)</td>
+                  <td><%= complaint.userName %> (<%= complaint.userEmail %>)</td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } %>
+      </section>
+    </main>
+
+    <div class="container">
+      <footer class="card" style="text-align:center; margin-bottom: 22px;">
+        <p>Created by <strong> Szabó Csenge </strong> - &copy; CyberSec Lab</p>
+      </footer>
+    </div>
+
+    <script src="/complaints.js"></script>
+  </body>
+</html>

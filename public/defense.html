@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>CyberSec Lab - Defense</title>
+    <link rel="stylesheet" href="style.css" >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  </head>
+  <body>
+    <a id="top"></a>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">CyS</div>
+        <div class="site-title">CyberSec Lab</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="gadgets.html">Gadgets</a>
+        <a href="threats.html">Attacks</a>
+        <a href="defense.html">Defense</a>
+        <a href="game.html">Game</a>
+        <a href="/train-routes">Routes</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="card" id="intro">
+        <h1 class="main-heading">How To Defend Yourself</h1>
+        <p>Practical recommendations for individuals and small teams to raise their security posture.</p>
+      </section>
+      <section class="card" id="checklist">
+        <h2>Quick Security Checklist</h2>
+        <ul>
+          <li>Keep software and firmware updated</li>
+          <li>Use multi-factor authentication (MFA)</li>
+          <li>Backup important data regularly</li>
+          <li>Use strong, unique passwords (password manager recommended)</li>
+        </ul>
+        <p><em>Tip:</em> For web developers, sanitize and validate all user input; follow OWASP guidelines.</p>
+      </section>
+      <section class="card">
+        <h2>Defensive Practices</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>
+              Practical defenses
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Focus</th>
+                <th scope="col">Action</th>
+                <th scope="col">Why it helps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Authentication</td>
+                <td>Enable MFA</td>
+                <td>Stops credential reuse attacks</td>
+              </tr>
+              <tr>
+                <td>Backups</td>
+                <td>Automated off-site backups</td>
+                <td>Mitigates ransomware impact</td>
+              </tr>
+              <tr>
+                <td>Input handling</td>
+                <td>Sanitize and validate</td>
+                <td>Prevents XSS/SQLi</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Rules of Engagement</h2>
+        <div class="note">
+          Do not test or attack systems you do not own or have explicit permission to test. Always obtain authorization.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Resources</h2>
+        <p>
+          <a href="#checklist" class="primary">Go to Checklist</a> <br >
+          <a href="gadgets.html" class="primary">Gadgets</a> <br >
+          <a href="https://tryhackme.com" target="_blank" class="secondary">TryHackMe</a> <br >
+        </p>
+      </section>
+
+      <div class="card">
+        <p><a href="#top" class="primary">Back to top</a></p>
+      </div>
+    </main>
+
+    <footer>
+      <p>Created by <strong> Szabó Csenge </strong> - &copy; CyberSec Lab</p>
+    </footer>
+  </body>
+</html>

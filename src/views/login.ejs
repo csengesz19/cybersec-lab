@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= title %> - CyberSec Lab</title>
+  <link rel="stylesheet" href="/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+</head>
+<body>
+
+  <%- include('partials/siteHeader') %>
+
+  <main class="container">
+    <section class="card">
+      <h1 class="main-heading">Login</h1>
+
+      <% if (errorMessage) { %>
+        <div class="card error"><p><%= errorMessage %></p></div>
+      <% } %>
+
+      <form class="data-form" method="POST" action="/login">
+        <input type="hidden" name="nextUrl" value="<%= nextUrl %>" />
+
+        <div class="form-row">
+          <label for="email">Email:</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+
+        <div class="form-row">
+          <label for="password">Password:</label>
+          <input id="password" name="password" type="password" required />
+        </div>
+
+        <button type="submit" class="primary game-btn">Login</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

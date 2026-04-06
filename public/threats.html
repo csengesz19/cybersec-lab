@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>CyberSec Lab - Attacks</title>
+    <link rel="stylesheet" href="style.css" >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  </head>
+  <body>
+    <a id="top"></a>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">CyS</div>
+        <div class="site-title">CyberSec Lab</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="gadgets.html">Gadgets</a>
+        <a href="threats.html">Attacks</a>
+        <a href="defense.html">Defense</a>
+        <a href="game.html">Game</a>
+        <a href="/train-routes">Routes</a>
+      </nav>
+    </header>
+    <main class="container">
+      <section class="card" id="intro">
+        <h1>Common Web Attacks</h1>
+        <p>Overview of typical web-focused attacks you might encounter when studying web security.</p>
+      </section>
+      <section class="card" id="types">
+        <h2>Types of Attacks</h2>
+        <p>Below are common categories — each has different vectors and mitigations.</p>
+        <ul>
+          <li><strong>Cross-Site Scripting (XSS)</strong> — injecting scripts into pages viewed by others.</li>
+          <li><strong>SQL Injection (SQLi)</strong>— injecting queries to manipulate databases.</li>
+          <li><strong>Cross-Site Request Forgery (CSRF)</strong> — forging actions on behalf of logged-in users.</li>
+        </ul>
+        <ol>
+          <li>Discover input point</li>
+          <li>Craft payload</li>
+          <li>Deliver payload</li>
+          <li>Escalate and persist</li>
+        </ol>
+      </section>
+      <section class="card">
+        <h2>Example: Simple XSS</h2>
+        <p>The following illustrates how an unsanitized input could be abused:</p>
+        <pre class="code-sample">&lt;input name="q" value="&lt;script&gt;alert('XSS')&lt;/script&gt;"&gt; </pre>
+      </section>
+
+      <section class="card">
+        <h2 class="universal">Attacker Progression</h2>
+        <div class="stair">
+          <div class="step step1">Recon</div>
+          <div class="step step2">Exploit</div>
+          <div class="step step3">Pivot</div>
+          <div class="step step4">Exfiltrate</div>
+        </div>
+      </section>
+
+      <div class="card">
+        <h2>Further Reading</h2>
+        <p>
+          <a href="#types" class="primary">Jump to Types</a> <br >
+          <a href="gadgets.html" class="primary">Gadgets</a> <br >
+          <a href="https://owasp.org" target="_blank" class="secondary">OWASP</a> <br >
+        </p>
+      </div>
+
+      <div class="card">
+        <p><a href="#top" class="primary">Back to top</a></p>
+      </div>
+    </main>
+
+    <footer>
+      <p>Created by <strong> Szabó Csenge </strong> - &copy; CyberSec Lab</p>
+    </footer>
+  </body>
+</html>

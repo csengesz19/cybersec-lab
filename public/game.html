@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>CyberSec Lab - Game</title>
+    <link rel="stylesheet" href="style.css" >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  </head>
+  <body>
+    <a id="top"></a>
+
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">CyS</div>
+        <div class="site-title">CyberSec Lab</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="gadgets.html">Gadgets</a>
+        <a href="threats.html">Attacks</a>
+        <a href="defense.html">Defense</a>
+        <a href="game.html" class="active">Game</a>
+        <a href="/train-routes">Routes</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="card" id="setup-card">
+        <h1 class="main-heading">FIND LINUS TORVALDS!</h1>
+
+        <form id="start-form">
+          <div class="form-row">
+            <label for="nick">Nickname:</label>
+            <input type="text" id="nick" name="nick" required >
+          </div>
+
+          <div class="form-row">
+            <label for="money">Money:</label>
+            <input type="number" id="money" name="money" min="1" step="1" required >
+          </div>
+
+          <div class="form-row">
+            <label for="currency">Currency:</label> <br >
+            <select name="currency" id="currency">
+              <option value="USD" data-mult="10">USD</option>
+              <option value="EUR" data-mult="10">EUR</option>
+              <option value="HUF" data-mult="400">HUF</option>
+              <option value="RON" data-mult="40">RON</option>
+            </select>
+          </div>
+          <button type="submit" class="primary game-btn start-btn">Start game</button>
+        </form>
+
+        <div class="note" id="rules-note">
+          <p>
+            Guess where Linus Torvalds is. If you guess right: you WIN +X.<br >
+            If you're wrong: you LOSE 2X. <br >
+            Game ends when you click "I'm done" or you go broke.
+          </p>
+        </div>
+      </section>
+
+      <section class="card" id="game-card" style="display: none">
+        <div class="game-status">
+          <div id="player-name">Player: ---</div>
+          <div id="player-money">Money: ---</div>
+        </div>
+
+        <div id="round-result">
+          <div class="round-message" id="round-message"></div>
+        </div>
+
+        <h2 class="universal">Where's Linus Torvalds?</h2>
+        <div class="game-cards">
+          <button class="guess-card" data-id="0" type="button">
+            <span class="card-inner" id="card-inner-0">
+              <span class="card-face card-back"></span>
+              <span class="card-face card-back" id="card-front-0"></span>
+            </span>
+          </button>
+
+          <button class="guess-card" data-id="1" type="button">
+            <span class="card-inner" id="card-inner-1">
+              <span class="card-face card-back"></span>
+              <span class="card-face card-back" id="card-front-1"></span>
+            </span>
+          </button>
+
+          <button class="guess-card" data-id="2" type="button">
+            <span class="card-inner" id="card-inner-2">
+              <span class="card-face card-back"></span>
+              <span class="card-face card-back" id="card-front-2"></span>
+            </span>
+          </button>
+
+          <div class="game-controls">
+            <button type="button" id="next-round-btn" class="primary game-btn" disabled>Next round</button>
+            <button type="button" id="stop-btn" class="secondary game-btn stop-btn">I'm done</button>
+            <button type="button" id="restart-btn" class="secondary game-btn">Try again</button>
+          </div>
+
+          <div class="note" id="game-over-box" style="display: none">Game over!</div>
+        </div>
+      </section>
+
+      <div class="card backtop">
+        <a href="#top" class="primary">Back to top</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>Created by <strong>Szabó Csenge </strong> — &copy; CyberSec Lab</p>
+    </footer>
+
+    <script src="game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="brand">
+    <div class="logo">CyS</div>
+    <div class="site-title">CyberSec Lab</div>
+  </div>
+
+  <div class="auth-box">
+    <% if (currentUser && currentUser.isAdmin) { %>
+      <span class="admin-badge">[ADMIN]</span>
+    <% } %>
+
+    <% if (currentUser) { %>
+      <form method="POST" action="/logout" style="display:inline;">
+        <button type="submit" class="game-btn auth-btn">Logout</button>
+      </form>
+    <% } else { %>
+      <a class="game-btn auth-btn" href="/login?next=<%= encodeURIComponent(currentPath) %>">Login</a>
+      <a class="game-btn auth-btn" href="/register?next=<%= encodeURIComponent(currentPath) %>">Register</a>
+    <% } %>
+  </div>
+
+  <nav class="main-nav">
+    <a href="/">Home</a>
+    <a href="/gadgets.html">Gadgets</a>
+    <a href="/threats.html">Attacks</a>
+    <a href="/defense.html">Defense</a>
+    <a href="/game.html">Game</a>
+    <a href="/train-routes">Routes</a>
+    <% if (currentUser && currentUser.isAdmin) { %>
+      <a href="/admin/complaints">Complaints</a>
+    <% } %>
+  </nav>
+</header>

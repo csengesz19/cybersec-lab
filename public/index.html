@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>CyberSec Lab</title>
+    <link rel="stylesheet" href="style.css" >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  </head>
+  <body>
+    <a id="top"></a>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">CyS</div>
+        <div class="site-title">CyberSec Lab</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="gadgets.html">Gadgets</a>
+        <a href="threats.html">Attacks</a>
+        <a href="defense.html">Defense</a>
+        <a href="game.html">Game</a>
+        <a href="/train-routes">Routes</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero card" id="about">
+        <h1 class="main-heading">Welcome to CyberSec Lab!</h1>
+        <p>
+          The <em>CyberSec Lab</em> is a light-hearted, practical space to learn web security — from gadgets to attacks
+          and defensive practices.
+        </p>
+        <p class="lead">
+          Use the navigation to explore gadget examples, common web attacks, and ways to defend yourself.
+        </p>
+      </section>
+
+      <div class="note card">⚠️ Use all tools and techniques only in legal, authorized environments.</div>
+
+      <section class="card" id="quickstart">
+        <h2 class="universal">Quick Start</h2>
+        <p>Short roadmap for getting hands-on with web security labs:</p>
+        <ol>
+          <li>Set up an isolated VM environment</li>
+          <li>Install testing targets (Juice Shop, DWA)</li>
+          <li>Practice capture-the-flag (CTF) tasks</li>
+          <li>Study mitigations and apply defensive fixes</li>
+        </ol>
+        <ul>
+          <li>Try guided rooms on <a class="secondary" href="https://tryhackme.com" target="_blank">TryHackMe</a></li>
+          <li>Follow OWASP Top 10 for web focus</li>
+          <li>Document findings and ask for feedback</li>
+        </ul>
+      </section>
+
+      <section class="card table-wrap" id="tools-table">
+        <h2 class="universal">Tools Overview</h2>
+        <table>
+          <caption>
+            Common tools used in web &amp; physical security labs
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Tool</th>
+              <th scope="col">Primary Use</th>
+              <th scope="col">Complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Flipper Zero</td>
+              <td>RFID / IR / simple radio experiments</td>
+              <td>Medium</td>
+            </tr>
+            <tr>
+              <td>Raspberry Pi</td>
+              <td>Local lab host, honeypots</td>
+              <td>Easy</td>
+            </tr>
+            <tr>
+              <td>Wireshark</td>
+              <td>Packet analysis</td>
+              <td>Easy</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="card">
+        <h2 class="universal">Cyber Growth Ladder</h2>
+        <div class="stair">
+          <div class="step step1">Ethical Hacking</div>
+          <div class="step step2">Scripting</div>
+          <div class="step step3">Linux</div>
+          <div class="step step4">Networking</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="universal">Links</h2>
+        <a href="gadgets.html" class="primary">Gadgets</a> <br >
+        <a href="https://owasp.org" target="_blank" class="secondary">OWASP</a> <br >
+        <a href="https://tryhackme.com" target="_blank" class="secondary">TryHackMe</a> <br >
+      </section>
+
+      <div class="card backtop">
+        <a href="#" class="primary">Back to top</a>
+      </div>
+    </main>
+
+    <footer>
+      <p>Created by <strong> Szabó Csenge  </strong> - &copy; CyberSec Lab</p>
+    </footer>
+  </body>
+</html>

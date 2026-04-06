@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title><%= title %> - CyberSec Lab</title>
+    <link rel="stylesheet" href="/style.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="icon" href="/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+  </head>
+  <body>
+    <%- include('partials/siteHeader') %>
+
+    <main class="container">
+      <section class="card">
+        <h1 class="main-heading">Bookings for route <%= trainRoute.trainRouteId %></h1>
+        <p>
+          <strong><%= trainRoute.sourceServer %></strong> →
+          <strong><%= trainRoute.destinationServer %></strong>,
+          <%= trainRoute.dayOfWeek %> @ <%= trainRoute.departureTime %>,
+          cost: <%= trainRoute.cost %> credits,
+          type: <%= trainRoute.trainType %>.
+        </p>
+      </section>
+
+      <% if (errorMessage) { %>
+        <div class="card error">
+          <p><%= errorMessage %></p>
+        </div>
+      <% } %>
+
+      <% if (successMessage) { %>
+        <div class="card success">
+          <p><%= successMessage %></p>
+        </div>
+      <% } %>
+
+      <div id="ajaxMessage" class="card" style="display:none;"></div>
+
+      <section class="card">
+        <h2 class="universal">Bookings</h2>
+
+        <% if (bookings.length === 0) { %>
+          <p>There are no bookings for this route yet.</p>
+        <% } else { %>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Packet label</th>
+                <th>Packet count</th>
+                <th>Created at</th>
+                <th>Delete</th>
+                <th>Complaint</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% bookings.forEach((booking) => { %>
+                <tr>
+                  <td><%= booking.bookingId %></td>
+                  <td><%= booking.userName %> (<%= booking.userEmail %>)</td>
+                  <td><%= booking.packetLabel %></td>
+                  <td><%= booking.packetCount %></td>
+                  <td><%= booking.createdAt %></td>
+
+                  <td>
+                    <% if (currentUser && booking.userId === currentUser.id) { %>
+                      <button
+                        type="button"
+                        class="primary game-btn delete-booking-btn"
+                        data-route-id="<%= trainRoute.trainRouteId %>"
+                        data-booking-id="<%= booking.bookingId %>"
+                      >
+                        Delete
+                      </button>
+                    <% } else { %>
+                      <span>-</span>
+                    <% } %>
+                  </td>
+
+                  <td>
+                    <% if (currentUser && booking.userId === currentUser.id) { %>
+                      <form
+                        method="POST"
+                        action="/train-routes/<%= trainRoute.trainRouteId %>/bookings/<%= booking.bookingId %>/complaint"
+                        style="display:inline;"
+                      >
+                        <button type="submit" class="primary game-btn">Complaint</button>
+                      </form>
+                    <% } else { %>
+                      <span>-</span>
+                    <% } %>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } %>
+      </section>
+
+      <section class="card">
+        <h2 class="universal">New booking for this route</h2>
+
+        <div class="card" style="margin-bottom: 16px;">
+          <% if (currentUser) { %>
+            <p>
+              Creating booking as:
+              <strong><%= currentUser.name %></strong> (<%= currentUser.email %>)
+            </p>
+          <% } else { %>
+            <p>You must be logged in to create a booking.</p>
+          <% } %>
+        </div>
+
+        <form class="data-form" method="POST" action="/train-routes/<%= trainRoute.trainRouteId %>/bookings">
+          <div class="form-row">
+            <label for="packetLabel">Packet label:</label>
+            <input
+              type="text"
+              id="packetLabel"
+              name="packetLabel"
+              required
+              placeholder="backup-2025-11-18"
+            >
+          </div>
+
+          <div class="form-row">
+            <label for="packetCount">Packet count:</label>
+            <input
+              type="number"
+              id="packetCount"
+              name="packetCount"
+              min="1"
+              step="1"
+              value="1"
+            >
+          </div>
+
+          <button type="submit" class="primary game-btn">Create booking</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>Created by <strong> Szabó Csenge </strong> - &copy; CyberSec Lab</p>
+    </footer>
+
+    <script src="/bookings.js"></script>
+  </body>
+</html>
