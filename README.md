@@ -18,6 +18,7 @@ The project includes:
 - `mssql`
 - `express-session`
 - `bcrypt`
+- `dotenv`
 - Vanilla JavaScript
 - HTML / CSS
 
@@ -136,29 +137,43 @@ database/
 npm install
 ```
 
-### 2. Create the database
+### 2. Make sure Microsoft SQL Server is installed and running
 
-Create a Microsoft SQL Server database named:
+This project requires a running **Microsoft SQL Server** instance.
+
+### 3. Create the database
+
+Create a database named:
 
 ```sql
 VonatTarsasag
 ```
 
-Then run the SQL schema file:
+Then run:
 
 ```text
 database/schema.sql
 ```
 
-### 3. Configure the database connection
+### 4. Configure environment variables
 
-Update the database connection settings in:
+Create a `.env` file based on `.env.example`, then fill in your own values.
 
-```text
-src/db.js
+Example:
+
+```env
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_SERVER=localhost
+DB_PORT=1433
+DB_NAME=VonatTarsasag
+DB_ENCRYPT=false
+DB_TRUST_SERVER_CERT=true
+SESSION_SECRET=change-me
+PORT=3000
 ```
 
-### 4. Start the application
+### 5. Start the application
 
 ```bash
 npm start
@@ -204,11 +219,22 @@ The `Felhasznalo` table stores passwords in hashed form using `JelszoHash`.
 
 ---
 
+## SQL Server Login Note
+
+The repository includes the database schema only.
+
+A separate SQL Server login creation script such as `CREATE LOGIN ...` is **not required** for the README or the main schema file, because that part depends on the local SQL Server setup of the person running the project.
+
+Users can configure their own SQL Server login and connection settings through the `.env` file.
+
+---
+
 ## Security Notes
 
 - Do not upload real database credentials to GitHub.
+- Do not upload your real `.env` file.
 - Do not place SQL setup files inside `public/`.
-- Prefer environment variables for database configuration in production.
+- Prefer environment variables for database configuration.
 - This project is intended for educational and demonstration purposes.
 
 ---
